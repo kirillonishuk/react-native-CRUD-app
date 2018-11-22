@@ -18,7 +18,7 @@ export default class СonfirmModal extends Component {
                 }}>
                     <View style={styles.screen}>
                         <Text style={styles.text}>{this.props.text || 'Good'}</Text>
-                        <Button title='Ок' onPress={() => this.props.closeModal()} />
+                        <Button color='orange' title='Ок' onPress={() => this.props.closeModal()} />
                     </View>
                 </View>
             </Modal>

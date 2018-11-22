@@ -62,13 +62,13 @@ export default class DeleteModal extends Component {
                         />
                         <Text style={styles.text}>{this.props.text || 'Удалить выбранную еду?'}</Text>
                         <View style={{ width: '75%', marginTop: 15 }}>
-                            <Button title='Изменить' onPress={() => this.props.onEdit(deleteOptions)} />
+                            <Button color='orange' title='Изменить' onPress={() => this.props.onEdit(deleteOptions)} />
                         </View>
                         <View style={{ width: '75%', marginTop: 15 }}>
-                            <Button title='Удалить' onPress={() => this.props.onDelete()} />
+                            <Button color='orange' title='Удалить' onPress={() => this.props.onDelete()} />
                         </View>
                         <View style={{ width: '75%', marginTop: 15, marginBottom: 15 }}>
-                            <Button title='Отмена' onPress={() => this.props.closeModal()} />
+                            <Button color='orange' title='Отмена' onPress={() => this.props.closeModal()} />
                         </View>
                     </View>
                 </View>
