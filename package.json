@@ -1,0 +1,25 @@
+{
+  "name": "empty-project-template",
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts"
+    ]
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "expo": "^30.0.1",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-color": "0.0.10",
+    "react-native-shadow": "^1.2.2",
+    "react-navigation": "^2.18.2",
+    "tinycolor2": "^1.4.1"
+  }
+}
