@@ -34,10 +34,10 @@ export default class CreateProductScreen extends Component {
             {this.props.name}
           </Text>
           <View style={styles.properties} >
-            <Text style={styles.cost} >
+            <Text style={[styles.cost, { color: this.props.color }]} >
               {`${this.props.cost}$`}
             </Text>
-            <Text style={styles.description} >
+            <Text style={[styles.description, { color: this.props.color }]} >
               {this.props.description}
             </Text>
           </View>
