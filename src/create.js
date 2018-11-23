@@ -9,13 +9,10 @@ import {
   Image,
   Button
 } from 'react-native';
-import {
-  HueSlider,
-  SaturationSlider,
-  LightnessSlider
-} from 'react-native-color';
-import tinycolor from 'tinycolor2';
 import { ImagePicker } from 'expo';
+
+import ColorPalette from 'react-native-color-palette';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import defaultImage from './static/image';
 import fetchFoundation from './api/apiFetch';
@@ -27,43 +24,15 @@ export default class CreateProductScreen extends Component {
     cost: '',
     description: '',
     image: null,
-    color: {
-      h: 0,
-      s: 0,
-      l: 0
-    },
     animating: 0,
     showModal: false,
+    color: '#4a76a8',
     status: ''
   }
 
   closeModal = () => {
     this.setState({
       showModal: false
-    })
-  }
-
-  changeColorH = (h) => {
-    this.setState({
-      color: {
-        ...this.state.color, h
-      }
-    })
-  }
-
-  changeColorS = (s) => {
-    this.setState({
-      color: {
-        ...this.state.color, s
-      }
-    })
-  }
-
-  changeColorL = (l) => {
-    this.setState({
-      color: {
-        ...this.state.color, l
-      }
     })
   }
 
@@ -94,7 +63,7 @@ export default class CreateProductScreen extends Component {
         method: 'POST',
         body: {
           name: this.state.name,
-          color: tinycolor(this.state.color).toHexString(),
+          color: this.state.color,
           cost: parseInt(this.state.cost),
           description: this.state.description,
           image: this.state.image || defaultImage
@@ -106,10 +75,10 @@ export default class CreateProductScreen extends Component {
               status: 'Еда добавлена.',
               showModal: true
             })
-            else this.setState({
-              status: 'Ошибка добавления.',
-              showModal: true
-            })
+          else this.setState({
+            status: 'Ошибка добавления.',
+            showModal: true
+          })
         },
           error => {
             this.setState({
@@ -124,11 +93,7 @@ export default class CreateProductScreen extends Component {
             cost: '',
             description: '',
             image: '',
-            color: {
-              h: 0,
-              s: 0,
-              l: 0
-            }
+            color: '#4a76a8'
           })
         })
     }
@@ -179,34 +144,13 @@ export default class CreateProductScreen extends Component {
             onChangeText={description => this.setState({ description })}
           />
           <Text style={styles.descLen}>{`${this.state.description.length}/100`}</Text>
-          <HueSlider
-            style={styles.gradient1}
-            gradientSteps={40}
-            value={this.state.color.h}
-            onValueChange={this.changeColorH}
+          <ColorPalette
+            onChange={color => this.setState({ color })}
+            defaultColor={this.state.color}
+            colors={['#4a76a8', '#00FF7F', '#9B59B6', '#808080', '#F4A460', '#FF1493', '#6A5ACD']}
+            title={" "}
+            icon={<Icon name="ios-checkmark" color={'orange'} size={36} />}
           />
-          <SaturationSlider
-            style={styles.gradient2}
-            gradientSteps={20}
-            value={this.state.color.s}
-            color={this.state.color}
-            onValueChange={this.changeColorS}
-          />
-          <LightnessSlider
-            style={styles.gradient2}
-            gradientSteps={20}
-            value={this.state.color.l}
-            color={this.state.color}
-            onValueChange={this.changeColorL}
-          />
-          <View style={{
-            marginTop: 30,
-            alignSelf: 'center',
-            width: 75,
-            height: 20,
-            marginBottom: 5,
-            backgroundColor: tinycolor(this.state.color).toHexString(),
-          }}></View>
           <View style={[{ width: "85%", borderRadius: 10, marginTop: 15 }]}>
             <Button
               onPress={this.pickImage}
@@ -250,6 +194,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   title: {
+    marginTop: 25,
     fontWeight: '100',
     fontSize: 20,
     marginBottom: 15,
