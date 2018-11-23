@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
-import { Modal, View, Button, Text, StyleSheet } from 'react-native';
+import { Modal, View, Button, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 export default class СonfirmModal extends Component {
+
     render() {
         return (
             <Modal
                 visible={this.props.display}
                 animationType="slide"
-                onRequestClose={() => {}}
+                onRequestClose={() => { }}
                 transparent={true}
             >
-                <View style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#00000080'
-                }}>
-                    <View style={styles.screen}>
-                        <Text style={styles.text}>{this.props.text || 'Good'}</Text>
-                        <Button color='orange' title='Ок' onPress={() => this.props.closeModal()} />
+                <TouchableWithoutFeedback onPress={() => { this.props.closeModal() }}>
+                    <View style={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#00000080'
+                    }}>
+                        <TouchableWithoutFeedback activeOpacity={1}>
+                            <View style={styles.screen}>
+                                <Text style={styles.text}>{this.props.text || 'Good'}</Text>
+                                <Button color='orange' title='Ок' onPress={() => this.props.closeModal()} />
+                            </View>
+                        </TouchableWithoutFeedback>
                     </View>
-                </View>
+                </TouchableWithoutFeedback>
             </Modal>
         )
     }

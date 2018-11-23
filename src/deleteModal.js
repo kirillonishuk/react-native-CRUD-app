@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, View, Button, Text, StyleSheet, TextInput } from 'react-native';
+import { Modal, View, Button, Text, StyleSheet, TextInput, TouchableWithoutFeedback } from 'react-native';
 
 export default class DeleteModal extends Component {
 
@@ -21,57 +21,61 @@ export default class DeleteModal extends Component {
                 onRequestClose={() => { }}
                 transparent={true}
             >
-                <View style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#00000080'
-                }}>
-                    <View style={styles.screen}>
-                        <TextInput
-                            style={styles.inputDefault}
-                            underlineColorAndroid="transparent"
-                            placeholder="Название еды"
-                            placeholderTextColor="#aeaeae94"
-                            autoCorrect={true}
-                            selectionColor="orange"
-                            autoCapitalize="words"
-                            value={this.state.name}
-                            onChangeText={name => this.setState({ name })}
-                        />
-                        <TextInput
-                            style={styles.inputDefault}
-                            underlineColorAndroid="transparent"
-                            placeholder="Цена в $"
-                            placeholderTextColor="#aeaeae94"
-                            selectionColor="orange"
-                            keyboardType="numeric"
-                            value={`${this.state.cost}`}
-                            onChangeText={cost => this.setState({ cost })}
-                        />
-                        <TextInput
-                            style={styles.inputDefault}
-                            underlineColorAndroid="transparent"
-                            placeholder="Описание"
-                            placeholderTextColor="#aeaeae94"
-                            autoCorrect={true}
-                            selectionColor="orange"
-                            maxLength={100}
-                            value={this.state.description}
-                            onChangeText={description => this.setState({ description })}
-                        />
-                        <Text style={styles.text}>{this.props.text || 'Удалить выбранную еду?'}</Text>
-                        <View style={{ width: '75%', marginTop: 15 }}>
-                            <Button color='orange' title='Изменить' onPress={() => this.props.onEdit(deleteOptions)} />
-                        </View>
-                        <View style={{ width: '75%', marginTop: 15 }}>
-                            <Button color='orange' title='Удалить' onPress={() => this.props.onDelete()} />
-                        </View>
-                        <View style={{ width: '75%', marginTop: 15, marginBottom: 15 }}>
-                            <Button color='orange' title='Отмена' onPress={() => this.props.closeModal()} />
-                        </View>
+                <TouchableWithoutFeedback onPress={() => { this.props.closeModal() }}>
+                    <View style={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#00000080'
+                    }}>
+                        <TouchableWithoutFeedback activeOpacity={1}>
+                            <View style={styles.screen}>
+                                <TextInput
+                                    style={styles.inputDefault}
+                                    underlineColorAndroid="transparent"
+                                    placeholder="Название еды"
+                                    placeholderTextColor="#aeaeae94"
+                                    autoCorrect={true}
+                                    selectionColor="orange"
+                                    autoCapitalize="words"
+                                    value={this.state.name}
+                                    onChangeText={name => this.setState({ name })}
+                                />
+                                <TextInput
+                                    style={styles.inputDefault}
+                                    underlineColorAndroid="transparent"
+                                    placeholder="Цена в $"
+                                    placeholderTextColor="#aeaeae94"
+                                    selectionColor="orange"
+                                    keyboardType="numeric"
+                                    value={`${this.state.cost}`}
+                                    onChangeText={cost => this.setState({ cost })}
+                                />
+                                <TextInput
+                                    style={styles.inputDefault}
+                                    underlineColorAndroid="transparent"
+                                    placeholder="Описание"
+                                    placeholderTextColor="#aeaeae94"
+                                    autoCorrect={true}
+                                    selectionColor="orange"
+                                    maxLength={100}
+                                    value={this.state.description}
+                                    onChangeText={description => this.setState({ description })}
+                                />
+                                <Text style={styles.text}>{this.props.text || 'Удалить выбранную еду?'}</Text>
+                                <View style={{ width: '75%', marginTop: 15 }}>
+                                    <Button color='orange' title='Изменить' onPress={() => this.props.onEdit(deleteOptions)} />
+                                </View>
+                                <View style={{ width: '75%', marginTop: 15 }}>
+                                    <Button color='orange' title='Удалить' onPress={() => this.props.onDelete()} />
+                                </View>
+                                <View style={{ width: '75%', marginTop: 15, marginBottom: 15 }}>
+                                    <Button color='orange' title='Отмена' onPress={() => this.props.closeModal()} />
+                                </View>
+                            </View>
+                        </TouchableWithoutFeedback>
                     </View>
-                </View>
+                </TouchableWithoutFeedback>
             </Modal>
         )
     }
