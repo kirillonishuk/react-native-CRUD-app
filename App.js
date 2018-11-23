@@ -20,7 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" backgroundColor="#f2f2f2" />
+        <StatusBar barStyle="light-content" backgroundColor="#f2f2f2" hidden={true} />
         <BottomNavigator screenProps={{}} />
       </View>
     );
